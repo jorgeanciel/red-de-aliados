@@ -43,10 +43,6 @@ function App() {
             >
               <div className="flex flex-1 p-3 flex-col gap-2">
                 <div className="hidden lg:flex flex-col gap-2">
-                  <h1 className="text-4xl tracking-wider font-bold">
-                    {item.titulo}
-                  </h1>
-
                   <div className="mx-auto px-5 font-sans text-start text-lg text-gray-500">
                     <span>{item.descripcion}</span>
                   </div>
@@ -98,7 +94,11 @@ function App() {
               </div>
 
               <div className="hidden lg:flex justify-evenly items-center  flex-col">
-                <img src={item.logo} alt="logo" />
+                <img
+                  src={item.imagenLogo}
+                  alt="logo"
+                  className="animate-spin-y"
+                />
                 <a href="https://www.data4sales.com/" target="__blank">
                   <button className="px-8 py-2 bg-gradient-to-r from-[#f54b64] to-[#ff6433]  border rounded-3xl text-white text-lg">
                     Ver mas
