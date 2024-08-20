@@ -36,19 +36,23 @@ function App() {
         <div className="flex mx-auto gap-8 flex-wrap">
           {filterData.map((item) => (
             <div
-              className={`flex border bg-white shadow-lg rounded-lg overflow-hidden ${
+              className={`flex border bg-white shadow-lg rounded-lg overflow-hidden p-1 ${
                 show ? "animate-slide-in" : "opacity-0"
               }`}
               key={data.titulo}
             >
-              <div className="flex flex-1 p-3 flex-col gap-2">
-                <div className="hidden lg:flex flex-col gap-2">
-                  <div className="mx-auto px-5 font-sans text-start text-lg text-gray-500">
+              <div className="flex flex-1 p-3 flex-col justify-between">
+                <div className="hidden lg:flex flex-col gap-4 items-center p-2">
+                  <div className="h-[50px]">
+                    <img src={item.titulo} alt="titulo" className="h-full" />
+                  </div>
+
+                  <div className="mx-auto px-1 font-sans text-start text-lg text-gray-500">
                     <span>{item.descripcion}</span>
                   </div>
                 </div>
                 <div className="lg:hidden">
-                  <img src={item.imagenLogo} alt="imagen-logo" />
+                  <img src={item.titulo} alt="imagen-logo" />
                 </div>
                 <div className="flex justify-between px-8 items-end">
                   <div className="">
@@ -93,13 +97,12 @@ function App() {
                 </div>
               </div>
 
-              <div className="hidden lg:flex justify-evenly items-center  flex-col">
-                <img
-                  src={item.imagenLogo}
-                  alt="logo"
-                  className="animate-spin-y"
-                />
-                <a href="https://www.data4sales.com/" target="__blank">
+              <div className="hidden lg:flex justify-evenly items-center flex-col">
+                <div className="h-[300px] w-[450px] flex justify-center items-center">
+                  <img src={item.imagenLogo} alt="logo" className="h-full" />
+                </div>
+
+                <a href={item.url} target="__blank">
                   <button className="px-8 py-2 bg-gradient-to-r from-[#f54b64] to-[#ff6433]  border rounded-3xl text-white text-lg">
                     Ver mas
                   </button>
