@@ -12,6 +12,7 @@ export const data = [
     imagenLogo:
       "https://academia.commercesociety.com/wp-content/uploads/2024/08/data4sales-logo.gif",
     url: "https://academia.commercesociety.com/data4sales/",
+    pais: "Peru",
   },
   {
     titulo:
@@ -25,5 +26,6 @@ export const data = [
     imagenLogo:
       "https://academia.commercesociety.com/wp-content/uploads/2024/08/tecnologia_educativa.gif",
     url: "https://academia.commercesociety.com/data4sales/",
+    pais: "Mexico",
   },
 ];
