@@ -79,7 +79,7 @@ function App() {
             </select>
             <button
               onClick={handleCountry}
-              className="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors"
+              className="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-red-500 hover:scale-105 active:scale-95 transition-transform duration-200 ease-in-out shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 cursor-pointer"
               disabled={!selectCountry}
             >
               Filtrar
@@ -163,7 +163,7 @@ function App() {
                 </div>
 
                 <a href={item.url} target="__blank">
-                  <button className="px-8 py-2 bg-gradient-to-r from-[#f54b64] to-[#ff6433]  border rounded-3xl text-white text-lg">
+                  <button className="px-8 py-2 bg-gradient-to-r from-[#f54b64] to-[#ff6433]  border rounded-3xl text-white text-lg hover:scale-105 active:scale-95 transition-transform duration-200 ease-in-out shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2">
                     Ver mas
                   </button>
                 </a>
