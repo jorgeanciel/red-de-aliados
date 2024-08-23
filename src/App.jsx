@@ -1,27 +1,26 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { data } from "./data/data";
-import { FaYoutube, FaLinkedin, FaPodcast, FaCheck } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaCheck,
+  FaInstagramSquare,
+  FaFacebook,
+  FaArrowLeft,
+  FaArrowRight,
+} from "react-icons/fa";
+import { usePagination } from "./hooks/usePagination";
 
 function App() {
   const [show, setShow] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectCountry, setSelectCountry] = useState("");
-  const [filterCountry, setFilterCountry] = useState([]);
 
-  const filterData = data.filter(
-    (card) =>
-      card.servicios.numero2.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      card.servicios.numero1.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (card.servicios.numero3 &&
-        card.servicios.numero3
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())) ||
-      searchTerm === ""
-  );
+  const [selectCountry, setSelectCountry] = useState("");
+  const [filterCountry, setFilterCountry] = useState(data);
+
+  const cardPagination = usePagination(filterCountry, 2);
 
   const handleCountry = () => {
-    if (selectCountry === "Todos") {
+    if (selectCountry === "Todos" || selectCountry === "") {
       setFilterCountry(data);
     } else {
       setFilterCountry(data.filter((card) => card.pais === selectCountry));
@@ -61,23 +60,7 @@ function App() {
           </div>
         </section>
 
-        <section className="flex gap-5 p-5 items-center">
-          <div className="flex items-center gap-2">
-            <select
-              value={selectCountry}
-              onChange={(e) => setSelectCountry(e.target.value)}
-              className="block w-[400px] p-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-            >
-              <option value="" disabled>
-                Categoria
-              </option>
-              <option value="Todos">Todos</option>
-              <option value="Peru">Grocery & Foods</option>
-              <option value="Argentina">B2B & D2C & B2B2C</option>
-              <option value="Ecuador">Pharma & Beauty</option>
-              <option value="Mexico">Techno & Electro</option>
-            </select>
-          </div>
+        <section className="flex gap-5 p-5 items-center justify-center">
           <div className="flex items-center gap-2">
             <select
               id="country-select"
@@ -104,7 +87,7 @@ function App() {
           </div>
         </section>
         <div className="flex mx-auto gap-8 flex-wrap">
-          {filterCountry.map((item) => (
+          {cardPagination.listSlice.map((item) => (
             <div
               className={`flex border bg-white shadow-lg rounded-lg overflow-hidden p-1 ${
                 show ? "animate-slide-in" : "opacity-0"
@@ -146,21 +129,29 @@ function App() {
 
                   <div className="flex p-1 gap-4">
                     <a
-                      href="https://www.youtube.com/shorts/MD5ijokcZ5E"
+                      href="https://www.facebook.com/data4sales/"
                       target="__blank"
                       className="text-orange-500"
                     >
-                      <FaYoutube size={30} cursor="pointer" target="__blank" />
+                      <FaFacebook size={30} cursor="pointer" target="__blank" />
                     </a>
                     <a
-                      href="https://www.youtube.com/shorts/MD5ijokcZ5E"
+                      href="https://www.linkedin.com/company/data4sales/?originalSubdomain=ar"
                       target="__blank"
                       className="text-orange-500"
                     >
                       <FaLinkedin size={30} cursor="pointer" target="__blank" />
                     </a>
-                    <a href="" className="text-orange-500">
-                      <FaPodcast size={30} cursor="pointer" target="__blank" />
+                    <a
+                      href="https://www.instagram.com/data4saleslatam/"
+                      className="text-orange-500"
+                      target="__blank"
+                    >
+                      <FaInstagramSquare
+                        size={30}
+                        cursor="pointer"
+                        target="__blank"
+                      />
                     </a>
                   </div>
                 </div>
@@ -179,6 +170,25 @@ function App() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex flex-row gap-4 justify-center m-5 text-2xl pt-6">
+          <button
+            onClick={() => cardPagination.previousPage()}
+            className="bg-gradient-to-r from-red-600 to-orange-400 px-8 py-1 rounded-lg"
+          >
+            <FaArrowLeft color="white" />
+          </button>
+          <input
+            type="text"
+            value={cardPagination.currentPage}
+            className="w-16 text-center rounded-lg text-black text-4xl font-bold"
+          />
+          <button
+            onClick={() => cardPagination.nextPage()}
+            className="bg-gradient-to-r from-red-600 to-orange-400 px-8 py-1 rounded-lg"
+          >
+            <FaArrowRight color="white" />
+          </button>
         </div>
       </div>
     </>
